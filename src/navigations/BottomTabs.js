@@ -1,6 +1,18 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {
+  AccountIcon,
+  AccountIconActive,
+  ChatIcon,
+  ChatIconActive,
+  HomeIcon,
+  HomeIconActive,
+  SearchIcon,
+  SearchIconActive,
+} from '../assets/svg';
+import Account from '../screen/account';
+import Chat from '../screen/chat';
 import Home from '../screen/home';
 import Search from '../screen/search';
 
@@ -11,28 +23,75 @@ const BottomTabs = () => {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: '#e91e63',
+        tabBarStyle: styles.tab,
       }}>
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: '',
           headerShown: false,
-          //   tabBarIcon: ({color, size}) => (
-          //     <MaterialCommunityIcons name="home" color={color} size={size} />
-          //   ),
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <View style={styles.tabMenu}>
+                <HomeIconActive width={30} height={30} />
+              </View>
+            ) : (
+              <View style={styles.tabMenu}>
+                <HomeIcon width={30} height={30} />
+              </View>
+            ),
         }}
       />
       <Tab.Screen
         name="Search"
         component={Search}
         options={{
-          tabBarLabel: 'Updates',
-          //   tabBarIcon: ({color, size}) => (
-          //     <MaterialCommunityIcons name="bell" color={color} size={size} />
-          //   ),
-          tabBarBadge: 3,
+          tabBarLabel: '',
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <View style={styles.tabMenu}>
+                <SearchIconActive width={30} height={30} />
+              </View>
+            ) : (
+              <View style={styles.tabMenu}>
+                <SearchIcon width={30} height={30} />
+              </View>
+            ),
+        }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={Chat}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <View style={styles.tabMenu}>
+                <ChatIconActive width={30} height={30} />
+              </View>
+            ) : (
+              <View style={styles.tabMenu}>
+                <ChatIcon width={30} height={30} />
+              </View>
+            ),
+        }}
+      />
+      <Tab.Screen
+        name="Account"
+        component={Account}
+        options={{
+          tabBarLabel: '',
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <View style={styles.tabMenu}>
+                <AccountIconActive width={30} height={30} />
+              </View>
+            ) : (
+              <View style={styles.tabMenu}>
+                <AccountIcon width={30} height={30} />
+              </View>
+            ),
         }}
       />
     </Tab.Navigator>
@@ -41,4 +100,13 @@ const BottomTabs = () => {
 
 export default BottomTabs;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  tab: {
+    height: 40,
+  },
+  tabMenu: {
+    marginTop: 20,
+
+    marginBottom: 0,
+  },
+});
