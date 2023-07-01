@@ -5,7 +5,7 @@ import {Logo} from '../../assets/img';
 const Splash = props => {
   useEffect(() => {
     setTimeout(() => {
-      props.navigation.replace('MainMenu');
+      props.navigation.replace('Login');
     }, 2000);
   }, [props.navigation]);
   return (
